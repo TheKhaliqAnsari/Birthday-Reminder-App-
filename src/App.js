@@ -1,23 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
+import List from './Components/List'
+import data from './Components/data';
+import React, {useState} from 'react';
 
 function App() {
+
+  const [listData, setListData] = useState(data);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>{listData.length} Upcoming birthday</h1>
+      {
+        listData.map((person) => {
+          return <List img={person.image} name={person.name} dob={person.dob} />
+        })
+      }
+     
+      <button onClick={() => setListData([])}>Clear birthday</button>
     </div>
   );
 }
